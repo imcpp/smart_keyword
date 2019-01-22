@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<title>Welcome</title>
+<style media="screen">
+	body{
+		background-image: url("https://images.pexels.com/photos/207301/pexels-photo-207301.jpeg?cs=srgb&dl=hd-wallpaper-ivy-leaves-207301.jpg&fm=jpg");
+	}
+</style>
+
+</head>
+<body>
+
+
+		<div class="container text-center">
+
+		<form class="form-inline justify-content-center" action="{% url 'search' %}" method="GET" style="margin-top:100px;">
+
+	<div class="form-group mx-sm-3 mb-2">
+
+		<input id="nm" type="text" class="form-control" placeholder="type here" name="srh" style="height: 50px;width: 800px;">
+	</div>
+
+</form>
+
+</div>
+
+
+
+
+</div>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+
+        var name = $("#nm").val();
+
+    	$('#nm').keyup(function(e){
+
+    		if(e.keyCode == 32){
+    			$.ajax({
+            url: "{%  url 'search' %}",
+            type: "GET",
+            data: {
+                'name':$("#nm").val(),
+
+            },
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function(data) {
+							//$("#loaddata").text(data.name);
+            	$("#nm").val(data.name);
+                //alert(data.name);
+            },
+            error: function(ts) {
+                alert(ts);
+            }
+        });
+
+   }
+
+
+
+    	});
+
+    });
+	</script>
+</body>
+</html>
