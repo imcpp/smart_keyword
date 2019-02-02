@@ -11,8 +11,8 @@ def search(request):
         name=request.GET['name']
         translator = Translator()
         #translator = Translator()
+        name=name.strip()
         s=name.split(" ")
-        s.pop()
         n=s.pop()
         d=enchant.Dict("en_us")
         #s.append("haa ")
@@ -25,4 +25,5 @@ def search(request):
              s.append(n+" ")
              name=" ".join(s)
 
+        name=name+ " "
         return JsonResponse({'name':name})
